@@ -10,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('blog', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->string('content');
-            $table->string('image');
+            $table->text('content');
+            $table->string(column: 'image');
 
 
             $table->unsignedBigInteger('user_id');  // Dùng kiểu dữ liệu unsignedBigInteger
@@ -30,6 +30,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('blog');
+        Schema::dropIfExists('blogs');
     }
 };
