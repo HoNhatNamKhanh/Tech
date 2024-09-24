@@ -19,9 +19,21 @@ class Category extends Authenticatable
     protected $fillable = [
         'name',
         'description',
+        'parent_id',
     ];
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+    // Relationship: A category can have many subcategories (children)
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    // Relationship: A category can have one parent category
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 }

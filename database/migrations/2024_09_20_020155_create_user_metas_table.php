@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('user_metas', function (Blueprint $table) {
             $table->id();
-            $table->string('phone');
-            $table->string('address');
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
             $table->string('role');
-            $table->string('image');
+            $table->string('image')->nullable();
 
             $table->unsignedBigInteger('user_id');  // Dùng kiểu dữ liệu unsignedBigInteger
             $table->foreign('user_id')->references(columns: 'id')->on('users')->onDelete('cascade');  // Khoá ngoại với cascade khi xóa category

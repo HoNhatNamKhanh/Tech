@@ -17,7 +17,6 @@ return new class extends Migration {
             $table->text('content');
             $table->string(column: 'image');
 
-
             $table->unsignedBigInteger('user_id');  // Dùng kiểu dữ liệu unsignedBigInteger
             $table->foreign('user_id')->references(columns: 'id')->on('users')->onDelete('cascade');  // Khoá ngoại với cascade khi xóa category
 
