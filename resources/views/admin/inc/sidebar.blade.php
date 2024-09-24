@@ -30,25 +30,39 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{route('category.index')}}" class="sidebar-link">
-                            <i class="fa-solid fa-list-alt pe-2"></i>
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
                             Categories
                         </a>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="{{route('categories.index')}}" class="sidebar-link"><i
+                                        class="fa-solid fa-file-lines pe-2"></i>
+                                    List Categories
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                               <a href="{{route('categories.create')}}" class="sidebar-link"><i
+                                        class="fa-solid fa-file-lines pe-2"></i>
+                                    Create Category
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{route('category.index')}}" class="sidebar-link">
+                        <a href="{{route('categories.index')}}" class="sidebar-link">
                             <i class="fa-solid fa-product-hunt pe-2"></i>
                             Products
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{route('category.index')}}" class="sidebar-link">
+                        <a href="{{route('categories.index')}}" class="sidebar-link">
                             <i class="fa-solid fa-user pe-2"></i>
                             Users
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{route('category.index')}}" class="sidebar-link">
+                        <a href="{{route('categories.index')}}" class="sidebar-link">
                             <i class="fa-solid fa-shopping-cart pe-2"></i>
                             Orders
                         </a>
@@ -61,7 +75,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
-    
+
 </body>
 
 </html>

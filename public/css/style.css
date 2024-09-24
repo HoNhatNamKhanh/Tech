@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
+:root {
+    --text-light-color: #fff;
+    --text-dark-color: #333;
+    --text-gray-color: #888;
+    --text-success-color: #26d474;
+}
 *,
 ::after,
 ::before {
@@ -63,7 +69,7 @@ h4 {
 }
 
 .sidebar-logo a {
-    color: #e9ecef;
+    color: var(--text-light-color);
     font-size: 1.15rem;
     font-weight: 600;
 }
@@ -76,14 +82,14 @@ h4 {
 }
 
 .sidebar-header {
-    color: #e9ecef;
+    color: var(--text-light-color);
     font-size: 0.75rem;
     padding: 1.5rem 1.5rem 0.375rem;
 }
 
 a.sidebar-link {
     padding: 0.625rem 1.625rem;
-    color: #e9ecef;
+    color: var(--text-light-color);
     position: relative;
     display: block;
     font-size: 0.875rem;
@@ -187,7 +193,7 @@ html[data-bs-theme="light"] .theme-toggle .fa-moon {
     padding: 10px;
     display: block;
     font-size: 1.25rem;
-    color: #fff;
+    color: var(--text-light-color);
 }
 
 html[data-bs-theme="dark"] .theme-toggle .fa-moon {
@@ -239,22 +245,265 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
 .pagination .page-link {
     color: #007bff; /* Màu link chính */
     padding: 0.5rem 0.75rem; /* Padding cho các link */
-    border: 1px solid #dee2e6; /* Đường viền cho các link */
+    border: 1px solid var(--text-light-color); /* Đường viền cho các link */
     border-radius: 0.25rem; /* Bo góc cho các link */
 }
 
 .pagination .page-item.active .page-link {
     background-color: #007bff; /* Màu nền cho link hiện tại */
-    color: white; /* Màu chữ cho link hiện tại */
+    color: var(--text-light-color); /* Màu chữ cho link hiện tại */
     border-color: #007bff; /* Đường viền cho link hiện tại */
 }
 
 .pagination .page-item.disabled .page-link {
-    color: #6c757d; /* Màu chữ cho link bị vô hiệu hóa */
+    color: var(--text-gray-color); /* Màu chữ cho link bị vô hiệu hóa */
     pointer-events: none; /* Không cho phép click */
     background-color: transparent; /* Không có màu nền */
 }
 
 .pagination .page-link:hover {
     background-color: rgba(0, 123, 255, 0.1); /* Màu nền khi hover */
+}
+/* CSS cho bảng */
+.table {
+    border-collapse: collapse; /* Đảm bảo các ô không có khoảng cách giữa các viền */
+    width: 100%; /* Đảm bảo bảng chiếm 100% chiều rộng */
+    overflow: hidden; /* Ẩn các phần bị tràn */
+}
+
+/* Viền cho các ô */
+.table th,
+.table td {
+    border: 1px solid var(--text-light-color); /* Viền cho các ô */
+    padding: 12px; /* Tăng khoảng cách bên trong các ô */
+}
+
+/* Tăng kích thước chữ */
+.table th {
+    font-size: 1.1rem; /* Kích thước chữ cho tiêu đề */
+    /* Màu nền cho tiêu đề */
+}
+
+.table td {
+    font-size: 1rem; /* Kích thước chữ cho nội dung */
+}
+
+/* Đảm bảo chữ không bị tràn ra ngoài */
+.table td {
+    overflow: hidden;
+    text-overflow: ellipsis; /* Thêm ba chấm nếu văn bản dài */
+    white-space: nowrap; /* Không ngắt dòng */
+}
+
+/* Responsive cho các thiết bị nhỏ */
+@media (max-width: 768px) {
+    .table th,
+    .table td {
+        font-size: 0.9rem; /* Giảm kích thước chữ trên các thiết bị nhỏ */
+        padding: 8px; /* Giảm khoảng cách bên trong các ô */
+    }
+}
+
+/* Responsive với cuộn cho thiết bị nhỏ hơn */
+.table-responsive {
+    overflow-x: auto; /* Thêm cuộn ngang cho bảng */
+}
+
+.table-responsive::-webkit-scrollbar {
+    height: 8px; /* Chiều cao của thanh cuộn */
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #888; /* Màu thanh cuộn */
+    border-radius: 4px; /* Bo góc thanh cuộn */
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: var(--text-gray-color); /* Màu thanh cuộn khi hover */
+}
+/* Thay đổi màu sắc cho thẻ <a> */
+html[data-bs-theme="dark"] span {
+    color: var(--text-light-color); /* Màu cho thẻ <a> trong chế độ tối */
+}
+
+html[data-bs-theme="light"] span {
+    color: var(--text-dark-color); /* Màu cho thẻ <a> trong chế độ sáng */
+}
+
+.card-body {
+    margin: 5%;
+}
+/* General Button Styles */
+.btn {
+    padding: 10px 20px; /* Padding cho nút */
+    font-size: 1rem; /* Kích thước chữ nút */
+    border-radius: 5px; /* Bo góc cho nút */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Hiệu ứng chuyển màu nền và viền */
+}
+
+/* Button Update Category */
+.btn-primary {
+    background-color: var(
+        --text-gray-color
+    ); /* Màu nền cho nút cập nhật (light mode) */
+    border: 1px solid var(--text-gray-color); /* Màu viền cho nút cập nhật (light mode) */
+    color: var(--text-light-color); /* Màu chữ trắng */
+}
+
+.btn-primary:hover {
+    background-color: var(
+        --text-success-color
+    ); /* Màu nền khi hover (light mode) */
+    border-color: var(
+        --text-success-color
+    ); /* Màu viền khi hover (light mode) */
+}
+
+/* Button Cancel */
+.btn-secondary {
+    background-color: var(
+        --text-gray-color
+    ); /* Màu nền cho nút hủy (light mode) */
+    border: 1px solid var(--text-gray-color); /* Màu viền cho nút hủy (light mode) */
+    color: var(--text-light-color); /* Màu chữ trắng */
+}
+
+.btn-secondary:hover {
+    background-color: var(
+        --text-success-color
+    ); /* Màu nền khi hover (light mode) */
+    border-color: var(
+        --text-success-color
+    ); /* Màu viền khi hover (light mode) */
+}
+
+/* Dark Theme Styles */
+html[data-bs-theme="dark"] .btn-primary {
+    background-color: var(
+        --text-light-color
+    ); /* Màu nền cho nút cập nhật (dark mode) */
+    border: 1px solid var(--text-light-color); /* Màu viền cho nút cập nhật (dark mode) */
+    color: var(--text-dark-color);
+}
+
+html[data-bs-theme="dark"] .btn-primary:hover {
+    background-color: var(
+        --text-success-color
+    ); /* Màu nền khi hover (dark mode) */
+    border-color: var(
+        --text-success-color
+    ); /* Màu viền khi hover (dark mode) */
+}
+
+html[data-bs-theme="dark"] .btn-secondary {
+    color: var(--text-dark-color);
+    background-color: var(
+        --text-light-color
+    ); /* Màu nền cho nút hủy (dark mode) */
+    border: 1px solid var(--text-light-color); /* Màu viền cho nút hủy (dark mode) */
+}
+
+html[data-bs-theme="dark"] .btn-secondary:hover {
+    background-color: var(
+        --text-success-color
+    ); /* Màu nền khi hover (dark mode) */
+    border-color: var(
+        --text-success-color
+    ); /* Màu viền khi hover (dark mode) */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* Tablet và di động lớn */
+    .btn {
+        width: 100%; /* Nút sẽ chiếm toàn bộ chiều rộng */
+        margin-bottom: 10px; /* Khoảng cách giữa các nút */
+        font-size: 0.9rem; /* Kích thước chữ nhỏ hơn một chút */
+    }
+}
+
+@media (max-width: 576px) {
+    /* Di động nhỏ */
+    .btn {
+        padding: 12px; /* Tăng padding để nút dễ nhấn hơn */
+        font-size: 1rem; /* Đảm bảo chữ vẫn đủ lớn */
+    }
+}
+
+@media (min-width: 769px) {
+    /* Desktop nhỏ */
+    .btn {
+        width: auto; /* Chiều rộng tự động trên desktop */
+        margin-bottom: 0; /* Bỏ khoảng cách giữa các nút */
+        font-size: 1rem; /* Kích thước chữ tiêu chuẩn */
+    }
+}
+
+@media (min-width: 992px) {
+    /* Desktop lớn */
+    .btn {
+        padding: 12px 24px; /* Tăng padding trên màn hình lớn hơn */
+        font-size: 1.1rem; /* Tăng kích thước chữ */
+    }
+}
+
+@media (min-width: 1200px) {
+    /* Màn hình rất lớn */
+    .btn {
+        padding: 14px 28px; /* Tăng padding cho nút trên màn hình rất lớn */
+        font-size: 1.2rem; /* Tăng kích thước chữ */
+    }
+}
+/* CSS cho nút */
+.button-warning {
+    background-color: #ffc107; /* Màu vàng cho chế độ sáng */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-warning:hover {
+    background-color: #e0a800; /* Màu vàng đậm khi hover */
+}
+
+/* Nút xóa */
+.button-danger {
+    background-color: #dc3545; /* Màu đỏ cho chế độ sáng */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-danger:hover {
+    background-color: #c82333; /* Màu đỏ đậm khi hover */
+}
+
+/* Chế độ tối */
+html[data-bs-theme="dark"] .button-warning {
+    background-color: #ffca2b; /* Màu vàng sáng hơn cho chế độ tối */
+}
+html[data-bs-theme="dark"] .button-warning i {
+    color: var(--text-dark-color);
+}
+
+html[data-bs-theme="dark"] .button-danger i {
+    color: var(--text-dark-color);
+}
+html[data-bs-theme="dark"] .button-danger {
+    background-color: #ff6b6b; /* Màu đỏ sáng hơn cho chế độ tối */
+}
+
+/* Thêm hiệu ứng cho nút khi ở chế độ tối */
+html[data-bs-theme="dark"] .button-warning:hover {
+    background-color: #e0a800;
+}
+
+html[data-bs-theme="dark"] .button-danger:hover {
+    background-color: #c82333;
 }

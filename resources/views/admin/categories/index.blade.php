@@ -1,5 +1,5 @@
 @extends('admin.inc.sidebar')
-@section('title', 'Categor')
+@section('title', 'Categories')
 
 @section('content')
 
@@ -24,7 +24,7 @@
             </ul>
         </div>
     </nav>
-    <main class="content px-3 py-2">
+    <main class="content p-5">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
@@ -33,36 +33,42 @@
                             <table class="table align-items-center mb-0" id="categoriesTable">
                                 <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             <a
                                                 href="{{ route('categories.index', ['sort' => 'id', 'direction' => ($sortField === 'id' && $sortDirection === 'asc') ? 'desc' : 'asc']) }}">
-                                                ID
+                                                <span>ID</span>
                                             </a>
                                         </th>
                                         <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             <a
                                                 href="{{ route('categories.index', ['sort' => 'name', 'direction' => ($sortField === 'name' && $sortDirection === 'asc') ? 'desc' : 'asc']) }}">
-                                                Name
+                                                <span>Name</span>
                                             </a>
                                         </th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Description</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
+                                            <a href="#"><span>Description</span></a>
+                                        </th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             <a
                                                 href="{{ route('categories.index', ['sort' => 'parent_id', 'direction' => ($sortField === 'parent_id' && $sortDirection === 'asc') ? 'desc' : 'asc']) }}">
-                                                Parent Category
+                                                <span>Parent Category</span>
                                             </a>
                                         </th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-center">
                                             <a
                                                 href="{{ route('categories.index', ['sort' => 'created_at', 'direction' => ($sortField === 'created_at' && $sortDirection === 'asc') ? 'desc' : 'asc']) }}">
-                                                Created At
+                                                <span>Created At</span>
                                             </a>
                                         </th>
-                                        <th class="text-secondary opacity-7"></th>
+                                        <th class="text-secondary opacity-7 text-center"></th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                     @foreach($categories as $category)
                                         <tr>
@@ -70,24 +76,42 @@
                                                 <span
                                                     class="text-secondary text-xs font-weight-bold">{{ $category->id }}</span>
                                             </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $category->name }}</p>
+                                            <td class="align-middle">
+                                                <a href="{{ route('categories.show', $category->id)}}">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ $category->name }}</span>
+                                                </a>
+
                                             </td>
-                                            <td>
-                                                <p class="text-xs text-secondary mb-0">{{ $category->description }}</p>
+
+                                            <td class="align-middle">
+                                                <p class="text-xs text-secondary mb-0 text-truncate"
+                                                    style="max-width: 250px;" title="{{ $category->description }}">
+                                                    {{ $category->description }}
+                                                </p>
                                             </td>
                                             <td class="align-middle">
-                                                {{ $category->parent ? $category->parent->name : 'N/A' }}
+                                                {{ $category->parent ? $category->parent->name : '' }}
                                             </td>
                                             <td class="align-middle">
                                                 <span
                                                     class="text-secondary text-xs font-weight-bold">{{ $category->created_at->format('d/m/Y') }}</span>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
+                                                <a href="{{ route('categories.edit', $category->id) }}"
                                                     data-toggle="tooltip" data-original-title="Edit category">
-                                                    Edit
+                                                    <button class="button-warning"><i class="fa fa-edit"></i></button>
                                                 </a>
+                                                <form action="{{ route('categories.destroy', $category->id) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="button-danger" type="submit" data-toggle="tooltip"
+                                                        data-original-title="Delete category"
+                                                        onclick="return confirm('Are you sure you want to delete this category?');">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
