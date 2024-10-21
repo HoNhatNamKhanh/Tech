@@ -45,9 +45,17 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'phone' => $request->input('phone'), // Lấy thông tin từ request
             'address' => $request->input('address'), // Lấy thông tin từ request
-            'role' => $request->input('role'), // Lấy thông tin từ request
+            'role' => 'user',
             'image' => $request->input('image'), // Lấy thông tin từ request
         ]);
+        // Đăng nhập người dùng
+        auth()->login($user);
+        if ($request->input('role') === 'admin') {
+            return redirect()->route('admin.home');
+        }
+
+        // Chuyển hướng đến trang mong muốn
+        return redirect()->route('verification.notice');
     }
 
     /**
@@ -64,4 +72,5 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
 }

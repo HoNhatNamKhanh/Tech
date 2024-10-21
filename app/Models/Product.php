@@ -34,4 +34,14 @@ class Product extends Authenticatable
     {
         return $this->hasMany(OrderItem::class);
     }
+    // Tự động thiết lập status
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($product) {
+            // Thiết lập status dựa trên quantity
+            $product->status = $product->quantity > 0 ? 'in stock' : 'out of stock';
+        });
+    }
 }

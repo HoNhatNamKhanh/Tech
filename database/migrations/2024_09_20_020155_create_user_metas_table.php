@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('role');
+            $table->string('role')->default('user');
             $table->string('image')->nullable();
 
             $table->unsignedBigInteger('user_id');  // Dùng kiểu dữ liệu unsignedBigInteger

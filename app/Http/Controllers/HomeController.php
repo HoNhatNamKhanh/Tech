@@ -21,8 +21,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $products = Product::orderBy('created_at', 'desc')->get();
         $categories = Category::all();
+        
 
         return view('home', compact('products','categories'));
     }
