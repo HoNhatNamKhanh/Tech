@@ -73,10 +73,24 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="" class="sidebar-link">
-                            <i class="fa-solid fa-user pe-2"></i>
-                            Users
-                        </a>
+                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#users" aria-expanded="false">
+                        <i class="fa-solid fa-file-lines pe-2"></i>
+                        Users
+                    </a>
+                    <ul id="users" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="{{route('users.index')}}" class="sidebar-link">
+                                <i class="fa-solid fa-file-lines pe-2"></i>
+                                List Users
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{route('users.create')}}" class="sidebar-link">
+                                <i class="fa-solid fa-file-lines pe-2"></i>
+                                Create Product
+                            </a>
+                        </li>
+                    </ul>
                     </li>
                     <li class="sidebar-item">
                         <a href="" class="sidebar-link">
