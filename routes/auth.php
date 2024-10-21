@@ -1,4 +1,4 @@
-// routes/auth.php
+<!-- // routes/auth.php -->
 <?php
 
 use App\Http\Controllers\HomeController;
