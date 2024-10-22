@@ -63,10 +63,13 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $categories = Category::all();
-        return view('admin.categories.show', compact('categories'));
+        // Retrieve the category by ID
+        $category = Category::with('products')->findOrFail($id); // Assuming there's a relationship defined
+        $categories = Category::all(); // For sidebar or navigation
 
+        return view('admin.categories.show', compact('category', 'categories'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
