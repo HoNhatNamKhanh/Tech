@@ -1,5 +1,5 @@
 @extends('admin.inc.sidebar')
-@section('title', 'Edit Product')
+@section('title', 'Edit User')
 
 @section('content')
 
@@ -31,12 +31,11 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-body px-0 pt-0 pb-2">
-                        <h4>Edit Product</h4>
-
-                        <form action="{{ route('products.update', $product->id) }}" method="POST"
+                        <h4>Edit User</h4>
+                        <form action="{{ route('users.update', $user->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
-                            @method('PUT') <!-- Specify the method as PUT for updates -->
+                            @method('PUT')
 
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -49,58 +48,64 @@
                             @endif
 
                             <div class="mb-3">
-                                <label for="name" class="form-label">Product Name</label>
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="{{ old('email', $user->email) }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    value="{{ old('name', $product->name) }}" required>
+                                    value="{{ old('name', $user->name) }}" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" name="description"
-                                    required>{{ old('description', $product->description) }}</textarea>
+                                <label for="password" class="form-label">Password (leave blank to keep current)</label>
+                                <input type="password" class="form-control" id="password" name="password">
                             </div>
 
                             <div class="mb-3">
-                                <label for="category_id" class="form-label">Category</label>
-                                <select class="form-select" id="category_id" name="category_id" required>
-                                    <option value="">Select Category</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}" {{ $category->id == old('category_id', $product->category_id) ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
-                                    @endforeach
+                                <label for="password_confirmation" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="password_confirmation"
+                                    name="password_confirmation">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="role" class="form-label">Role</label>
+                                <select class="form-select" id="role" name="role" required>
+                                    <option value="">Select Role</option>
+                                    <option value="admin" {{ old('role', $user->role) === 'admin' ? 'selected' : '' }}>
+                                        Admin</option>
+                                    <option value="user" {{ old('role', $user->role) === 'user' ? 'selected' : '' }}>User
+                                    </option>
                                 </select>
                             </div>
 
+                            <h5>User Meta</h5>
                             <div class="mb-3">
-                                <label for="quantity" class="form-label">Quantity</label>
-                                <input type="number" class="form-control" id="quantity" name="quantity" min="0"
-                                    value="{{ old('quantity', $product->quantity) }}" required>
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" name="address"
+                                    value="{{ old('address', $user->userMeta->address ?? '') }}">
                             </div>
 
                             <div class="mb-3">
-                                <label for="price" class="form-label">Price</label>
-                                <input type="number" step="0.01" class="form-control" id="price" name="price" min="0"
-                                    value="{{ old('price', $product->price) }}" required>
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="phone" name="phone"
+                                    value="{{ old('phone', $user->userMeta->phone ?? '') }}">
                             </div>
 
                             <div class="mb-3">
-                                <label for="image" class="form-label">Image</label>
+                                <label for="image" class="form-label">Image (optional)</label>
                                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
-                                @if($product->image)
-                                    <img src="{{ asset('storage/' . $product->image) }}" alt="Current Image"
-                                        class="img-fluid mt-2" style="max-width: 150px;">
-                                @endif
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Update Product</button>
+                            <button type="submit" class="btn btn-primary">Update User</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
     <a href="#" class="theme-toggle">
         <i class="fa-regular fa-moon"></i>
         <i class="fa-regular fa-sun"></i>

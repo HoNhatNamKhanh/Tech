@@ -121,7 +121,7 @@
                     </div>
                     <div class="d-flex justify-content-center align-items-center mb-3">
                         <div>
-                            {{ $categories->links('pagination::bootstrap-5') }} <!-- Phân trang -->
+                            {{ $categories->links('vendor.pagination.bootstrap-5') }} <!-- Phân trang -->
                         </div>
                     </div>
                 </div>

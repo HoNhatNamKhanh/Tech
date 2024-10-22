@@ -1,6 +1,6 @@
-<div class="d-flex flex-column flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+<div class="d-flex flex-column flex-sm-fill d-sm-flex align-items-center justify-content-between p-3">
     <div>
-        <p class="small text-muted">
+        <p class="small text-muted mb-0">
             {!! __('Showing') !!}
             <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
             {!! __('to') !!}
@@ -11,17 +11,15 @@
         </p>
     </div>
 
-    <div>
-        <ul class="pagination">
+    <nav>
+        <ul class="pagination justify-content-center mb-0">
             {{-- Previous Page Link --}}
-            <li class="page-item {{ $paginator->onFirstPage() ? 'disabled' : '' }}"
-                aria-disabled="{{ $paginator->onFirstPage() ? 'true' : 'false' }}"
-                aria-label="@lang('pagination.previous')">
+            <li class="page-item {{ $paginator->onFirstPage() ? 'disabled' : '' }}">
                 @if ($paginator->onFirstPage())
-                    <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                    <span class="page-link text-muted" aria-hidden="true">Previous</span>
                 @else
-                    <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev"
-                        aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                    <a class="page-link text-dark" href="{{ $paginator->previousPageUrl() }}" rel="prev"
+                        aria-label="@lang('pagination.previous')">Previous</a>
                 @endif
             </li>
 
@@ -29,7 +27,8 @@
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <li class="page-item disabled" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
+                    <li class="page-item disabled" aria-disabled="true"><span class="page-link text-muted">{{ $element }}</span>
+                    </li>
                 @endif
 
                 {{-- Array Of Links --}}
@@ -38,9 +37,9 @@
                         <li class="page-item {{ $page == $paginator->currentPage() ? 'active' : '' }}"
                             aria-current="{{ $page == $paginator->currentPage() ? 'page' : '' }}">
                             @if ($page == $paginator->currentPage())
-                                <span class="page-link">{{ $page }}</span>
+                                <span class="page-link bg-light text-dark">{{ $page }}</span>
                             @else
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                <a class="page-link bg-light text-dark" href="{{ $url }}">{{ $page }}</a>
                             @endif
                         </li>
                     @endforeach
@@ -48,16 +47,48 @@
             @endforeach
 
             {{-- Next Page Link --}}
-            <li class="page-item {{ $paginator->hasMorePages() ? '' : 'disabled' }}"
-                aria-disabled="{{ $paginator->hasMorePages() ? 'false' : 'true' }}"
-                aria-label="@lang('pagination.next')">
+            <li class="page-item {{ $paginator->hasMorePages() ? '' : 'disabled' }}">
                 @if ($paginator->hasMorePages())
-                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next"
-                        aria-label="@lang('pagination.next')">&rsaquo;</a>
+                    <a class="page-link text-dark" href="{{ $paginator->nextPageUrl() }}" rel="next"
+                        aria-label="@lang('pagination.next')">Next</a>
                 @else
-                    <span class="page-link" aria-hidden="true">&rsaquo;</span>
+                    <span class="page-link text-muted" aria-hidden="true">Next</span>
                 @endif
             </li>
         </ul>
-    </div>
+    </nav>
 </div>
+
+<style>
+    .page-link {
+        background-color: #f8f9fa;
+        /* Light gray background */
+        color: #6c757d;
+        /* Gray text for non-active items */
+        border: 1px solid #dee2e6;
+        /* Border color */
+        transition: background-color 0.3s, color 0.3s;
+        /* Smooth transition for hover */
+    }
+
+    .page-item.active .page-link {
+        background-color: #e9ecef;
+        /* Darker gray for active item */
+        color: #343a40;
+        /* Dark text for active item */
+        font-weight: bold;
+        /* Bold for active item */
+    }
+
+    .page-item.disabled .page-link {
+        color: #adb5bd;
+        /* Muted gray for disabled items */
+    }
+
+    .page-link:hover {
+        background-color: #e2e6ea;
+        /* Darker gray on hover */
+        color: #343a40;
+        /* Dark text on hover */
+    }
+</style>
